@@ -1,0 +1,45 @@
+<mat-select [(ngModel)]="schoolClass" (selectionChange)="selected()">
+  <mat-option *ngFor="let i of classes" value="{{i.title}}">{{i.title}}</mat-option>
+</mat-select>
+
+<mat-selection-list>
+  <mat-list-option (selectedChange)="selectedchanged($event)">Insert into ClassRoom?</mat-list-option>
+</mat-selection-list>
+
+
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Shipping Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First name" formControlName="firstname">
+            <mat-error *ngIf="addressForm.controls['firstname'].hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last name" formControlName="lastname">
+            <mat-error *ngIf="addressForm.controls['lastname'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="!addressForm.valid" mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+<input [disabled]="!classRoomCheckbock" [(ngModel)]="zweig" />

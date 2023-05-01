@@ -1,0 +1,50 @@
+<h2 *ngIf="course==undefined">No course with id</h2>
+
+<div *ngIf="course!=undefined">
+  <h2>Course: {{course.id}}</h2>
+
+  <div class="course-detail">
+    <div>Title: {{course.title}}</div>
+    <div>Description: {{course.description}}</div>
+
+    <div>Prerequisites:
+      {{course.prerequisite ? course.prerequisite.id : '-'}}
+    </div>
+  </div>
+
+  <div>
+    <h3>Register for course:</h3>
+
+    <div class="row">
+      <div class="column"><label for="startSelect">Beginn: </label></div>
+      <div class="column">
+        <select id="startSelect">
+          <option  value="1"></option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <label for="firstname">Firstname: </label>
+      </div>
+      <div class="column">
+        <input id="firstname">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <label for="lastname">Lastname: </label>
+      </div>
+      <div class="column">
+        <input id="lastname">
+      </div>
+    </div>
+
+    <div class="row">
+      <button>Register</button>
+    </div>
+  </div>
+
+</div>

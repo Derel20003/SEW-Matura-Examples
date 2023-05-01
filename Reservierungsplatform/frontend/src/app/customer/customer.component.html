@@ -1,0 +1,131 @@
+<form [formGroup]="customerForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card mt-0">
+    <mat-card-header>
+      <mat-card-title>Customer Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>First name</mat-label>
+            <input matInput placeholder="First name" formControlName="first_name">
+            <mat-icon matSuffix class="material-icons-outlined">sentiment_satisfied</mat-icon>
+            <mat-error *ngIf="customerForm.controls['first_name'].hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Last name</mat-label>
+            <input matInput placeholder="Last name" formControlName="last_name">
+            <mat-icon matSuffix class="material-icons-outlined">keyboard<!--badge--></mat-icon>
+            <mat-error *ngIf="customerForm.controls['last_name'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Street</mat-label>
+            <input matInput placeholder="Street" formControlName="street">
+            <mat-icon matSuffix class="material-icons-outlined">keyboard<!--add_road--></mat-icon>
+            <mat-error *ngIf="customerForm.controls['street'].hasError('required')">
+              Street is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>House number</mat-label>
+            <input matInput placeholder="House number" formControlName="house_number">
+            <mat-icon matSuffix class="material-icons-outlined">keyboard<!--door_front--></mat-icon>
+            <mat-error *ngIf="customerForm.controls['house_number'].hasError('required')">
+              House number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="City" formControlName="city">
+            <mat-icon matSuffix class="material-icons-outlined">keyboard<!--home--></mat-icon>
+            <mat-error *ngIf="customerForm.controls['city'].hasError('required')">
+              City is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Zip</mat-label>
+            <input matInput placeholder="Zip" formControlName="zip_code">
+            <mat-icon matSuffix class="material-icons-outlined">keyboard<!--signpost--></mat-icon>
+            <mat-error *ngIf="customerForm.controls['zip_code'].hasError('required')">
+              Zip is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="customerForm.controls['zip_code'].hasError('minlength')">
+              Zip must have at least 4 characters
+            </mat-error>
+            <mat-error *ngIf="customerForm.controls['zip_code'].hasError('maxlength')">
+              Zip must have at most 5 characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" type="password" formControlName="password">
+            <mat-icon matSuffix class="material-icons-outlined">lock</mat-icon>
+            <mat-error *ngIf="customerForm.controls['password'].hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="customerForm.controls['password'].hasError('minlength')">
+              Password must have at least 6 characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Birth date</mat-label>
+            <input matInput placeholder="Birth date" formControlName="birth_date">
+            <mat-icon matSuffix class="material-icons-outlined">keyboard<!--celebration--></mat-icon>
+            <mat-error *ngIf="customerForm.controls['birth_date'].hasError('required')">
+              Birth date is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Telephone number</mat-label>
+            <input matInput placeholder="Telephone number" formControlName="tel_number">
+            <mat-icon matSuffix class="material-icons-outlined">phone</mat-icon>
+            <mat-error *ngIf="customerForm.controls['tel_number'].hasError('required')">
+              Telephone number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="email" formControlName="email">
+            <mat-icon matSuffix>mail_outline</mat-icon>
+            <mat-error *ngIf="customerForm.controls['email'].hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" type="submit" [disabled]="customerForm.invalid">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

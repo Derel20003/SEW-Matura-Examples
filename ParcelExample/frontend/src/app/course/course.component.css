@@ -1,0 +1,15 @@
+.course-detail {
+  font-size: large;
+}
+
+.column {
+  float: left;
+  min-width: 120px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

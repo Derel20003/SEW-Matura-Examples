@@ -1,0 +1,12 @@
+<div>
+  Search for course (id or title):
+  <input #courseSearch (input)="courseSearchVal=courseSearch.value">
+  <button *ngIf="courseSearchVal.length>2" (click)="search()">Search</button>
+</div>
+
+<div *ngIf="courses.length>0">
+  <h3>Courses: </h3>
+  <a *ngFor="let course of courses" href="course/{{course.id}}">
+    {{course.id}} - {{course.title}}<br>
+  </a>
+</div>

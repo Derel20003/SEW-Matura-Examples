@@ -1,0 +1,81 @@
+<form [formGroup]="reservationForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="mt-0">
+    <mat-card-header>
+      <mat-card-title>Neue Reservierung</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Datum wählen</mat-label>
+            <input matInput formControlName="date" [matDatepicker]="dpicker" [readonly]="true" placeholder="Klicke auf den Kalender"
+                   (change)="getAvailableTimes()">
+            <mat-datepicker-toggle matSuffix [for]="dpicker"></mat-datepicker-toggle>
+            <mat-datepicker #dpicker></mat-datepicker>
+            <mat-error *ngIf="reservationForm.controls['date'].hasError('required')">
+              Datum muss angegeben werden
+            </mat-error>
+            <mat-error *ngIf="reservationForm.controls['date'].hasError('dateInvalid')">
+              Datum darf nicht vor dem heutigen Tag liegen!
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Sportart wählen</mat-label>
+            <mat-select formControlName="sport" (selectionChange)="getCourtsByType($event.value)">
+              <mat-option *ngFor="let courtType of courtTypes" [value]="courtType.name">
+                {{courtType.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="reservationForm.controls['duration'].hasError('required')">
+              Dauer muss angegeben werden
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" color="accent" appearance="outline">
+            <mat-label>Dauer (Minuten)</mat-label>
+            <input matInput formControlName="duration" type="number" value="30" step="30" min="30" max="120"
+                   (change)="getAvailableTimes()">
+            <mat-error *ngIf="reservationForm.controls['duration'].hasError('required')">
+              Dauer muss angegeben werden
+            </mat-error>
+            <mat-error *ngIf="reservationForm.controls['duration'].hasError('stepInvalid')">
+              Dauer nur in 30er Schritten
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-xl-4" *ngFor="let court of courts">
+          <mat-card class="mat-elevation-z0">
+            <mat-card-header>
+              <mat-card-title class="mat-card-title-blue">Platz {{court.id}}</mat-card-title>
+              <mat-card-subtitle class="mat-card-subtitle-blue">befindet sich in {{court.name}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <table mat-table [dataSource]="times" *ngIf="times.length > 0" class="full-width">
+                <ng-container matColumnDef="time">
+                  <th mat-header-cell *matHeaderCellDef> Zeiten </th>
+                  <td mat-cell *matCellDef="let time">
+                    <span>{{time.start_time | date: 'H:mm'}} - {{time.end_time | date: 'H:mm'}} Uhr</span>
+                    <button mat-raised-button color="accent" class="float-end" [disabled]="reservationForm.invalid"
+                            (click)="createReservation(time.start_time, time.end_time, court.id)">Reservieren</button>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col full-width d-flex justify-content-center mt-3" *ngIf="!courts">
+          <h3>Keine verfügbaren Termine gefunden!</h3>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>
+
+

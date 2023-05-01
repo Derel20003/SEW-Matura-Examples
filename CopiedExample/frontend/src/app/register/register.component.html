@@ -1,0 +1,61 @@
+<select [(ngModel)]="selectedLevel" (change)="selectedtest()" id="startSelect">
+  <option type="radio" *ngFor="let i of users" value="{{i.firstname}}">{{i.firstname}} asdasd{{i.lastname}}</option>
+  <option  *ngFor="let i of users" value="{{i.firstname}}">{{i.firstname}} asdasd{{i.lastname}}</option>
+</select>
+
+<mat-radio-group  [(ngModel)]="selectedLevel" (change)="selectedtest()">
+  <mat-radio-button (click)="selectedtest()   " >Test</mat-radio-button>
+  <mat-radio-button>Test</mat-radio-button>
+</mat-radio-group>
+
+<mat-selection-list  >
+  <mat-list-option (selectedChange)="selected($event, i.firstname)" *ngFor="let i of users">{{i.firstname}}</mat-list-option>
+  <mat-radio-group  [(ngModel)]="selectedLevel" >
+    <mat-radio-button  (change)="selectedChaned($event)" [value]="i" *ngFor="let i of users">{{i.firstname}}</mat-radio-button>
+  </mat-radio-group>
+
+</mat-selection-list>
+
+
+<mat-select>
+  <p>TeasdasdLoanze</p>
+  <mat-option value="one">First option</mat-option>
+  <mat-option value="two">Second option</mat-option>
+</mat-select>
+
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+
+
+
+    <mat-card-header>
+      <mat-card-title>Shipping Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First name" formControlName="firstname">
+            <mat-error *ngIf="addressForm.controls['firstname'].hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last name" formControlName="lastname">
+            <mat-error *ngIf="addressForm.controls['lastname'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

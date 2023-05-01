@@ -1,0 +1,50 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$pink-palette);
+$accent: mat.define-palette(mat.$purple-palette, A200, A100, A700);
+$warn: mat.define-palette(mat.$red-palette);
+
+$primary-second: mat.define-palette(mat.$blue-palette, 900);
+$accent-second: mat.define-palette(mat.$blue-palette, A200, A100, A700); // pink palette is cool too
+$warn-second: mat.define-palette(mat.$red-palette);
+
+.text-highlight-blue {
+  color: mat.get-color-from-palette(mat.$blue-palette, 500) !important;
+}
+
+$frontend-theme: mat.define-dark-theme((
+  //background: mat.get-color-from-palette(mat.$purple-palette, 'darker'),
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+  )
+));
+
+$frontend-theme-second: mat.define-dark-theme((
+  //background: mat.get-color-from-palette(mat.$purple-palette, 'darker'),
+  color: (
+    primary: $primary-second,
+    accent: $accent-second,
+    warn: $warn-second,
+  )
+));
+
+.dark-mode {
+  .mat-grid-tile-header, .mat-grid-tile-footer {
+    background-color: mat.get-color-from-palette($accent-second) !important;
+  }
+
+  .mat-grid-tile-header > h1, .mat-grid-tile-footer > h1 {
+    //color: black;
+  }
+
+  .mat-card-title-blue, .mat-card-subtitle-blue {
+    color: mat.get-color-from-palette($accent-second) !important;
+  }
+
+  @include mat.all-component-themes($frontend-theme-second);
+}
+

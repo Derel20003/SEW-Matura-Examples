@@ -1,0 +1,13 @@
+<div>
+  Search for course (id or title):
+  <input [(ngModel)]="searchString">
+  <button [disabled]="searchString.length<3" (click)="search()">Search</button>
+</div>
+
+<div *ngIf="courses.length>0">
+  <h3>Courses: </h3>
+  <div *ngFor="let i of courses">
+    {{i.title}}
+    <a routerLink="/course/{{i.id}}">{{i.id}}</a>
+  </div>
+</div>
