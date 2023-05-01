@@ -1,0 +1,25 @@
+###
+// should return Course Algorithmen
+GET http://localhost:8080/api/course/search/gori
+
+###
+// should return 2 Programming Courses
+GET http://localhost:8080/api/course/search/PRO00
+
+###
+// get Course be ID
+GET http://localhost:8080/api/course/PRO002
+
+###
+// get planned coursed for id
+GET http://localhost:8080/api/course/plan/PRO001
+
+###
+POST http://Localhost:8080/api/course/plan
+Content-Type: application/json
+
+{
+  "planId": 2,
+  "firstname": "Hans",
+  "lastname": "Huber"
+}
